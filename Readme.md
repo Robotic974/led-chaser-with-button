@@ -36,8 +36,21 @@ On utilisera ici deux platines de prototypage pour que le câblage ne soit pas t
 Le bouton poussoir, quant à lui, est relié à la broche **D2** de la carte Arduino pour qu'on puisse lire son état (enfoncé / relâché), ainsi qu'à la broche d'alimentation **5V** de la carte Arduino, qui permettra de faire circuler un courant électrique lorsque le bouton sera enfoncé et, dans le même temps, de basculer la broche de lecture **D2** à l'état `HIGH`. Lorsque le bouton est relâché, pour éviter que la broche de lecture **D2** ne se trouve dans un état flottant et oscille intempestivement entre les états logiques `HIGH` et `LOW`, il convient de la relier à la masse (**GND**) au travers d'une résistance de rappel de **10 kΩ**. Cette résistance est ainsi caractérisée comme une résistance **pull-down** et permet de maintenir l'état de la broche de lecture **D2** au niveau logique `LOW` lorsque le bouton est relâché. La valeur élevée de la résistance permet de limiter l'intensité du courant à une valeur très faible lorsque le bouton est enfoncé et que le circuit est fermé entre la broche d'alimentation **5V** et la masse.
 
 <p align="center">
-    <img src="assets/pull-down-button.png" width="551" height="241" alt="pull-down resistor attached to a push button">
+    <img src="assets/pull-down-button.png" width="551" height="241" alt="Câblage d'une résistance de rappel pull-down">
 </p>
+
+
+## Effet rebond du bouton poussoir
+
+Le bouton est un dispositif mécanique dans lequel les éléments de contacts s'entrechoquent lorsqu'on enfonce ou relâche le poussoir. À l'échelle temporelle de traitement de l'information, induite par l'activité électronique au niveau de la carte Arduino, on observe donc une phase de transition pendant laquelle apparaissent des effets rebonds indésirables. Le bouton ne change pas instantanément d'état lorsqu'on agit dessus, et la broche de lecture de la carte Arduino va donc détecter une succession de changements d'états logiques `HIGH` / `LOW` avant de se stabiliser. Voilà par exemple ce qui se passe lorsqu'on presse le bouton :
+
+<p align="center">
+    <img src="assets/bouncing.png" width="522" height="302" alt="Rebonds mécaniques observés sur un bouton poussoir">
+</p>
+
+Un phénomène similaire apparaît également lorsqu'on relâche le bouton et que la broche de lecture repasse à l'état `LOW`.
+
+Nous allons voir, avec les exercices proposés, comment mettre en évidence ce phénomène, et surtout comment en tenir compte pour gérer proprement les interactions de l'utilisateur avec le bouton.
 
 
 ## Configuration du projet PlatformIO
