@@ -16,12 +16,6 @@ L'objectif de cet atelier est de poursuivre le travail que nous avons commencé 
 
 Les anodes (+) de chaque LED sont respectivement reliées, dans le même ordre, aux broches **D5** à **D12** (de droite à gauche) de la carte Arduino. Les cathodes (-), quant à elles, sont toutes reliées à la masse, c'est-à-dire à la broche **GND** de la carte Arduino, au travers d'une résistance de **220 Ω** pour limiter l'intensité du courant qui traversera les LEDs, et les protéger d'une dégradation qui leur serait fatale.
 
-<!-- sans pour autant prendre le risque de se retrouver dans une situation de court-circuit si, par inadvertance, on mettait la broche **D2** sous tension dans le code. En effet, si cela devait arriver, une différence de potentiel de 5V existerait alors entre la broche et la masse... ce qui entraînerait un court-circuit : un courant de très forte intensité circulerait et détruirait instantanément le circuit de la carte Arduino.
-
-Il est par ailleurs relié à la masse
-
-la broche d'alimentation **5V** de la carte Arduino pour qu'un courant -->
-
 On utilisera ici deux platines de prototypage pour que le câblage ne soit pas trop étriqué :
 
 <table>
