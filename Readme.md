@@ -42,7 +42,7 @@ Le bouton est un dispositif mécanique dans lequel les éléments de contacts s'
     <img src="assets/bouncing.png" width="522" height="302" alt="Rebonds mécaniques observés sur un bouton poussoir">
 </p>
 
-Un phénomène similaire apparaît également lorsqu'on relâche le bouton et que la broche de lecture repasse à l'état `LOW`. Le profil des changements d'états qui surviennent pendant la phase transitionnelle où l'on observe les effets rebonds dépend de plusieurs facteurs comme la structure du bouton lui-même, ou la manière dont l'utilisateur enfonce ou relâche le poussoir. La durée de cette phase peut également être variable d'un bouton à l'autre.
+Un phénomène similaire apparaît également lorsqu'on relâche le bouton et que la broche de lecture repasse à l'état `LOW`. Le profil des changements d'états qui surviennent pendant la phase transitoire où l'on observe les effets rebonds dépend de plusieurs facteurs comme la structure du bouton lui-même, ou la manière dont l'utilisateur enfonce ou relâche le poussoir. La durée de cette phase peut également être variable d'un bouton à l'autre.
 
 Nous allons voir, avec les exercices proposés, comment mettre en évidence ce phénomène, et surtout comment en tenir compte pour éliminer ses effets indésirables et gérer proprement la réponse du micro-contrôleur aux signaux perturbés induits par l'action de l'utilisateur sur le bouton.
 
