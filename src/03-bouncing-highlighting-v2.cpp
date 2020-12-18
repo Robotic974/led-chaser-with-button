@@ -74,6 +74,14 @@ void setup() {
 
 /**
  * @brief Boucle de contrôle principale.
+ * 
+ * @note L'idée consiste ici à reproduire l'expérience de l'exercice
+ *       précédent, mais à ne comptabiliser que les passages de `LOW`
+ *       à `HIGH`. Autrement dit, on ne s'intéresse ici qu'aux moments
+ *       où on enfonce le bouton.
+ * 
+ *       Vous verrez que malgré tout, les effets rebonds peuvent encore
+ *       se manifester... même si on en comptabilise moins que précédemment.
  */
 void loop() {
 
