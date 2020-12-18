@@ -72,7 +72,7 @@ framework = arduino
 
 Chaque exercice proposé correspond à un programme Arduino indépendant des autres exercices. Néanmoins, pour ne pas avoir à gérer autant de projets PlatformIO qu'il y'a d'exercices, on peut s'arranger pour tous les faire coexister au sein d'un même projet. Il existe différentes façons de mettre cela en oeuvre avec PlatformIO, et nous avons déjà appliqué l'une d'entre elles dans [l'atelier précédent][led-chaser]. Cette fois, nous allons procéder autrement.
 
-Chaque exercice est traité dans un fichier source portant l'extension `.cpp` et stocké dans le dossier `src`. Par défaut, PlatformIO se charge de compiler tous les fichiers sources qu'il trouve dans le dossier `src`, et notamment le traditionnel `main.cpp`. Aussi, pour modifier ce comportement, il existe une directive très pratique à insérer dans le fichier `platformio.ini` qui va nous permettre d'indiquer précisément ce qu'il faut compiler ou non. Par exemple, si l'on souhaite compiler le programme décrit dans le fichier `01-basic-button.cpp`, il suffira de le spécifier à l'aide de la directive `src_filter` de la manière suivante :
+Chaque exercice est traité dans un fichier source portant l'extension `.cpp` et stocké dans le dossier `src`. Par défaut, PlatformIO se charge de compiler tous les fichiers sources qu'il trouve dans le dossier `src`, et notamment le traditionnel `main.cpp`. Aussi, pour modifier ce comportement, il existe une directive très pratique à insérer dans le fichier `platformio.ini` qui va nous permettre d'indiquer précisément ce qu'il faut compiler ou non. Par exemple, si l'on souhaite compiler le programme décrit dans le fichier `01-basic-button.cpp`, et uniquement celui-là, il suffira de le spécifier à l'aide de la directive `src_filter` de la manière suivante :
 
 ```ini
 [env:led-chaser]
@@ -82,9 +82,9 @@ framework  = arduino
 src_filter = -<*> +<01-basic-button.cpp>
 ```
 
-Par conséquent, pour compiler un autre programme, vous devrez préciser le nom du fichier correspondant.
+Ici on construit une liste de fichiers à compiler, en commençant par exclure tous les fichiers se trouvant dans le dossier `src` avec la balise `-<*>`, puis en insérant le seul fichier `01-basic-button.cpp` que l'on souhaite compiler avec la balise `+<01-basic-button.cpp>`.
 
-Chaque fichier solution est spécifique et indépendant des autres. Vous ne pouvez en compiler qu'un seul à la fois.
+Par conséquent, pour compiler un autre programme, vous devrez préciser le nom du fichier correspondant avec la balise appropriée. Chaque fichier solution est spécifique et indépendant des autres. Vous ne pouvez donc en compiler qu'un seul à la fois.
 
 *Reportez-vous à la documentation officielle de PlatformIO pour plus de détails sur [la directive `src_filter`][src-filter].*
 
