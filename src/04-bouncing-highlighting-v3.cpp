@@ -77,28 +77,26 @@ void ledWrite(const uint8_t n) {
  * @brief Affichage du décompte des transitions logiques enregistrées.
  * 
  * @note Si au cours de la fenêtre de comptage, on a dénombré :
- *         + 3 passages de `LOW` à `HIGH`
- *         + 2 passages de `HIGH` à `LOW`
+ *         + 3 passages de `LOW` à `HIGH` (up)
+ *         + 2 passages de `HIGH` à `LOW` (down)
  * 
  *       Alors la rampe de LEDs affichera :
  * 
+ *           up
+ *        +-----+
  *         ● ● ● ○ ○ ○ ● ●
+ *                    +---+
+ *                     down
  */
 void showCount() {
 
-    // Initialisation du nombre binaire à afficher.
-    uint8_t n = 0;
-
     // Activation des bits "allumés" à gauche.
-    for (uint8_t i=0; i<up; i++) {
-        n |= (1 << (7 -i));
-    }
+    uint8_t n = 255 - ((1 << (8 - up)) - 1);
 
     // Activation des bits "allumés" à droite.
     n |= (1 << down) - 1;
 
-    // Affichage du nombre binaire obtenu par composition
-    // sur la rampe de LEDs.
+    // Affichage du nombre binaire obtenu par composition.
     ledWrite(n);
 
 }
