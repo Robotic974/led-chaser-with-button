@@ -36,7 +36,7 @@ Le bouton poussoir, quant à lui, est relié à la broche **D2** de la carte Ard
 
 ## Effet rebond du bouton poussoir
 
-Le bouton est un dispositif mécanique dans lequel les éléments de contacts s'entrechoquent lorsqu'on enfonce ou relâche le poussoir. À l'échelle temporelle de traitement de l'information, induite par l'activité électronique au niveau de la carte Arduino, on observe donc une phase de transition pendant laquelle apparaissent des effets rebonds indésirables. Le bouton ne change pas instantanément d'état lorsqu'on agit dessus, et la broche de lecture de la carte Arduino va donc détecter une succession de changements d'états logiques `HIGH` / `LOW` avant de se stabiliser. Voilà par exemple ce qui se passe lorsqu'on presse le bouton :
+Le bouton est un dispositif mécanique dans lequel les éléments de contacts s'entrechoquent lorsqu'on enfonce ou relâche le poussoir. À l'échelle temporelle de traitement de l'information, induite par l'activité électronique au niveau de la carte Arduino, on observe donc une phase de transition pendant laquelle apparaissent des effets rebonds indésirables. Le bouton ne change pas instantanément d'état lorsqu'on agit dessus, et la broche de lecture de la carte Arduino va donc détecter une succession de changements d'états logiques `HIGH` / `LOW` avant de se stabiliser. Voilà par exemple ce que l'on peut observer à l'oscilloscope lorsqu'on presse le bouton :
 
 <p align="center">
     <img src="assets/bouncing.png" width="522" height="302" alt="Rebonds mécaniques observés sur un bouton poussoir">
