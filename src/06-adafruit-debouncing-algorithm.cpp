@@ -92,7 +92,7 @@ void loop() {
     if (millis() - last_debounce_ms > DEBOUNCE_DELAY_MS) {
 
         // Le signal de sortie peut donc être déduit du signal d'entrée (output = input),
-        // mais on s'intéresse ici qu'aux cas où l'on observe une bascule du signal de sortie...
+        // mais on ne s'intéresse ici qu'aux cas où l'on observe une bascule du signal de sortie...
         if (output != input) {
 
             output = input;
