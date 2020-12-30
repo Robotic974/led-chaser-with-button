@@ -19,18 +19,52 @@
 #include "Led.h"
 #include "AdafruitButton.h"
 
+/**
+ * @brief Définition des LEDs.
+ * 
+ * @note On instancie 4 LEDs à partir du modèle générique `Led`.
+ *       Chaque LED est respectivement associée aux broches de
+ *       commandes D5, D6, D7 et D8 de la carte Arduino.
+ */
 Led led1(5), led2(6), led3(7), led4(8);
+
+/**
+ * @brief Définition du bouton.
+ * 
+ * @note On instancie un bouton à partir du modèle `AdafruitButton`
+ *       qui met en oeuvre l'algorithme de debouncing d'Adafruit.
+ *       Le bouton est associé à la broche de lecture D2 de la carte Arduino.
+ */
 AdafruitButton button(2);
 
+/**
+ * @brief Démarrage du programme principal.
+ * 
+ * @note Il n'y'a rien de spécial à effectuer ici...
+ */
 void setup() {}
 
+/**
+ * @brief Boucle de contrôle principale.
+ */
 void loop() {
 
+    // Lecture du niveau logique du signal d'entrée du bouton.
+    // L'algorithme de debouncing permet d'en déduire la valeur
+    // du niveau logique de sortie, qui permet à son tour de
+    // déterminer l'état effectif du bouton.
     button.read();
 
+    // La LED n°1 change d'état dès que le bouton est enfoncé.
     if (button.isPressed())  led1.toggle();
+
+    // La LED n°2 change d'état dès que le bouton est relâché.
     if (button.isReleased()) led2.toggle();
+
+    // La LED n°3 s'allume si le bouton est maintenu enfoncé, et s'éteint sinon.
     led3.light(button.isHeld());
+
+    // La LED n°4 s'allume si le bouton est maintenu enfoncé pendant au moins 1 seconde, et s'éteint sinon.
     led4.light(button.wasHeldFor(1000));
 
 }
