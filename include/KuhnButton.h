@@ -32,20 +32,30 @@ struct KuhnButton : Button {
     /**
      * @brief Seuil maximal de l'intégrateur de l'algorithme.
      * 
-     * @note Cette constante est déclarée `static` pour être partagée par toutes
+     * @note Dès que l'intégrateur atteint ce seuil, le signal d'entrée est
+     *       considéré comme stable et le niveau logique du signal de sortie
+     *       peut alors passer à l'état `HIGH`.
+     * 
+     *       Si vous observez encore des rebonds, il suffit d'augmenter la
+     *       valeur du seuil.
+     * 
+     *       Cette constante est déclarée `static` pour être partagée par toutes
      *       les instances au lieu d'être dupliquée dans chaque instance.
      */
-    static const uint8_t DEBOUNCING_THRESHOLD = 4;
+    static const uint8_t DEBOUNCING_THRESHOLD = 16;
 
     /**
      * @brief Valeur instantanée de l'intégrateur.
      * 
-     * @note L'intégrateur permet de cumuler les valeurs lues du niveau logique
-     *       du signal d'entrée du bouton.
+     * @note L'intégrateur permet de cumuler les observations du niveau logique
+     *       du signal d'entrée :
+     * 
+     *           +1 quand le signal est à `HIGH` (1)
+     *           -1 quand le signal est à `LOW`  (0)
      * 
      *       Il est utilisé pour effectuer une hystérésis temporelle de sorte que
      *       le signal d'entrée doit être maintenu dans un état logique (0 ou 1)
-     *       constant pour que la sortie passe à cet état.
+     *       constant pour que la sortie passe à cet état par effet de seuil.
      */
     uint8_t integrator;
 
