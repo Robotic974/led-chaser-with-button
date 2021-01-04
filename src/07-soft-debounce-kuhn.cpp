@@ -1,37 +1,32 @@
 /*
- * -------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------
  * Atelier de programmation Robotic 974
  * © 2020 Stéphane Calderoni
- * -------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------
  * Introduction à la programmation des cartes Arduino
  * Contrôle d'un chenillard à 8 LEDs par un bouton poussoir
- * -------------------------------------------------------------------------
- * Enrichissement de l'algorithme de debouncing de Kennet A. Kuhn
- * définissant 4 états distincts pour caractériser le bouton :
- *   - isPressed()
- *   - isReleased()
- *   - isHeld()
- *   - wasHeldFor(const uint16_t ms)
- * -------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------
+ * Commande de 4 LEDs par un bouton à l'aide de l'algorithme de Kennet A. Kuhn
+ * ---------------------------------------------------------------------------
  */
 
 #include <Arduino.h>
-#include "Led.h"
-#include "KuhnButton.h"
+#include <Led.h>
+#include <KuhnButton.h>
 
 /**
  * @brief Définition des LEDs.
  * 
- * @note On instancie 4 LEDs à partir du modèle générique `Led`.
- *       Chaque LED est respectivement associée aux broches de
- *       commandes D5, D6, D7 et D8 de la carte Arduino.
+ * @note On instancie 4 LEDs à partir du modèle défini par la classe Led.
+ *       Chaque LED est respectivement associée aux broches de commandes
+ *       D5, D6, D7 et D8 de la carte Arduino.
  */
 Led led1(5), led2(6), led3(7), led4(8);
 
 /**
  * @brief Définition du bouton.
  * 
- * @note On instancie un bouton à partir du modèle `KuhnButton`
+ * @note On instancie un bouton à partir du modèle défini par la classe KuhnButton
  *       qui met en oeuvre l'algorithme de debouncing de Kenneth A. Kuhn.
  *       Le bouton est associé à la broche de lecture D2 de la carte Arduino.
  */
@@ -49,10 +44,7 @@ void setup() {}
  */
 void loop() {
 
-    // Lecture du niveau logique du signal d'entrée du bouton.
-    // L'algorithme de debouncing permet d'en déduire la valeur
-    // du niveau logique de sortie, qui permet à son tour de
-    // déterminer l'état effectif du bouton.
+    // Lecture de l'état du bouton.
     button.read();
 
     // La LED n°1 change d'état dès que le bouton est enfoncé.

@@ -6,32 +6,27 @@
  * Introduction à la programmation des cartes Arduino
  * Contrôle d'un chenillard à 8 LEDs par un bouton poussoir
  * -------------------------------------------------------------------------
- * Enrichissement de l'algorithme de debouncing d'Adafruit
- * définissant 4 états distincts pour caractériser le bouton :
- *   - isPressed()
- *   - isReleased()
- *   - isHeld()
- *   - wasHeldFor(const uint16_t ms)
+ * Commande de 4 LEDs par un bouton à l'aide de l'algorithme d'Adafruit
  * -------------------------------------------------------------------------
  */
 
 #include <Arduino.h>
-#include "Led.h"
-#include "AdafruitButton.h"
+#include <Led.h>
+#include <AdafruitButton.h>
 
 /**
  * @brief Définition des LEDs.
  * 
- * @note On instancie 4 LEDs à partir du modèle générique `Led`.
- *       Chaque LED est respectivement associée aux broches de
- *       commandes D5, D6, D7 et D8 de la carte Arduino.
+ * @note On instancie 4 LEDs à partir du modèle défini par la classe Led.
+ *       Chaque LED est respectivement associée aux broches de commandes
+ *       D5, D6, D7 et D8 de la carte Arduino.
  */
 Led led1(5), led2(6), led3(7), led4(8);
 
 /**
  * @brief Définition du bouton.
  * 
- * @note On instancie un bouton à partir du modèle `AdafruitButton`
+ * @note On instancie un bouton à partir du modèle défini par la classe AdafruitButton
  *       qui met en oeuvre l'algorithme de debouncing d'Adafruit.
  *       Le bouton est associé à la broche de lecture D2 de la carte Arduino.
  */
@@ -49,10 +44,7 @@ void setup() {}
  */
 void loop() {
 
-    // Lecture du niveau logique du signal d'entrée du bouton.
-    // L'algorithme de debouncing permet d'en déduire la valeur
-    // du niveau logique de sortie, qui permet à son tour de
-    // déterminer l'état effectif du bouton.
+    // Lecture de l'état du bouton.
     button.read();
 
     // La LED n°1 change d'état dès que le bouton est enfoncé.

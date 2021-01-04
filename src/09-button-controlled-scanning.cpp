@@ -11,8 +11,8 @@
  */
 
 #include <Arduino.h>
-#include "Led.h"
-#include "AdafruitButton.h"
+#include <Led.h>
+#include <AdafruitButton.h>
 
 /**
  * @brief Nombre de LEDs.
@@ -23,7 +23,7 @@ const uint8_t NUM_LEDS = 8;
  * @brief Instanciation de la rampe de LEDs.
  * 
  * @note Chaque LED est implémentée par un objet construit à partir d'un
- *       modèle unique décrit par la structure `Led`.
+ *       modèle unique décrit par la classe Led.
  * 
  *       Les LEDs sont respectivement reliées aux broches de commande
  *       D5, D6, D7, D8, D9, D10, D11 et D12.
@@ -36,8 +36,8 @@ Led led[] = { Led(5), Led(6), Led(7), Led(8), Led(9), Led(10), Led(11), Led(12) 
  * @note Le bouton est implémenté par un objet construit à partir de l'un
  *       des modèles suivants, au choix :
  * 
- *           - soit avec le modèle KuhnButton,
- *           - soit avec le modèle AdafruitButton.
+ *           - soit avec la classe KuhnButton,
+ *           - soit avec la classe AdafruitButton.
  * 
  *       Le bouton est relié à la broche de lecture D2 de la carte Arduino.
  */
