@@ -12,7 +12,7 @@
 
 /**
  * @note Incorpore le fichier d'en-tête qui déclare les attributs et les
- *       méthodes de la classe KuhnButton avant de les définir.
+ *       méthodes de la classe AdafruitButton avant de les définir.
  */
 #include "AdafruitButton.h"
 

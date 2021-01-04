@@ -60,5 +60,5 @@ bool Button::isHeld() {
 }
 
 bool Button::wasHeldFor(const uint16_t delay_ms) {
-    return _state == State::held && millis() - _held_start_ms >= delay_ms;
+    return isHeld() && (millis() - _held_start_ms >= delay_ms);
 }

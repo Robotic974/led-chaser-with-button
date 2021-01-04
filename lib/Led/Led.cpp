@@ -12,7 +12,7 @@
 
 /**
  * @note Incorpore le fichier d'en-tête qui déclare les attributs et les
- *       méthodes de la classe LED avant de les définir.
+ *       méthodes de la classe Led avant de les définir.
  */
 #include "Led.h"
 
