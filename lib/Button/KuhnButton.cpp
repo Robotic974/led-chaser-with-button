@@ -16,7 +16,7 @@
  */
 #include "KuhnButton.h"
 
-void KuhnButton::debounce(const uint8_t input) {
+void KuhnButton::_debounce(const uint8_t input) {
 
      if (!input) {
 

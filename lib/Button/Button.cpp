@@ -20,43 +20,43 @@ Button::Button(const uint8_t pin) {
     pinMode(_pin = pin, INPUT);
 }
 
-void Button::update() {
+void Button::_update() {
 
     switch (_state) {
-        case State::free:
-            if (_output) _state = State::pressed;
+        case _State::free:
+            if (_output) _state = _State::pressed;
             break;
-        case State::pressed:
+        case _State::pressed:
             if (_output) {
-                _state = State::held;
+                _state = _State::held;
                 _held_start_ms = millis();
-            } else _state = State::released;
+            } else _state = _State::released;
             break;
-        case State::held:
-            if (!_output) _state = State::released;
+        case _State::held:
+            if (!_output) _state = _State::released;
             break;
-        case State::released:
-            _state = State::free;
+        case _State::released:
+            _state = _State::free;
             break;
     }
 
 }
 
 void Button::read() {
-    debounce(digitalRead(_pin));
-    update();
+    _debounce(digitalRead(_pin));
+    _update();
 }
 
 bool Button::isPressed() {
-    return _state == State::pressed;
+    return _state == _State::pressed;
 }
 
 bool Button::isReleased() {
-    return _state == State::released;
+    return _state == _State::released;
 }
 
 bool Button::isHeld() {
-    return _state == State::held;
+    return _state == _State::held;
 }
 
 bool Button::wasHeldFor(const uint16_t delay_ms) {

@@ -30,7 +30,7 @@
  *       défini par la classe Button.
  * 
  *       Elle concrétise le modèle abstrait en définissant une implémentation
- *       de la méthode debounce() selon l'algorithme de Kennet A. Kuhn.
+ *       de la méthode _debounce() selon l'algorithme de Kennet A. Kuhn.
  * 
  *       Par conséquent, elle complète le modèle abstrait et devient par là-même
  *       un modèle concret qui pourra être instancié en tant que tel et engendrer
@@ -72,12 +72,7 @@ class KuhnButton : public Button {
          */
         uint8_t _integrator;
 
-    public:
-
-        /**
-         * @brief Propage le constructeur défini par le modèle parent Button.
-         */
-        using Button::Button;
+    protected:
 
         /**
          * @brief Déparasitage du signal électronique provenant du bouton.
@@ -86,13 +81,20 @@ class KuhnButton : public Button {
          * 
          * @note Le signal d'entrée parasité par des effets rebonds potentiels
          *       sera directement lu par la fonction digitalRead() sur la broche
-         *       de lecture du bouton. La méthode debounce() se chargera donc
+         *       de lecture du bouton. La méthode _debounce() se chargera donc
          *       d'éliminer ces parasites à l'aide de l'algorithme de debouncing
          *       de Kennet A. Kuhn.
          * 
          *       Le mot clef "override" précise ici qu'il s'agit d'une redéfinition
-         *       de la méthode debounce() déclarée par le modèle parent Button.
+         *       de la méthode _debounce() déclarée par le modèle parent Button.
          */
-        void debounce(const uint8_t input) override;
+        void _debounce(const uint8_t input) override;
+
+    public:
+
+        /**
+         * @brief Propage le constructeur défini par le modèle parent Button.
+         */
+        using Button::Button;
 
 };

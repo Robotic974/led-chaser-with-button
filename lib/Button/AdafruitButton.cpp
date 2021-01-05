@@ -16,7 +16,7 @@
  */
 #include "AdafruitButton.h"
 
-void AdafruitButton::debounce(const uint8_t input) {
+void AdafruitButton::_debounce(const uint8_t input) {
 
     if (input != _last_input) {
 

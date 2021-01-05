@@ -37,12 +37,12 @@
  *       debouncing. On se contentera de préciser que cette méthode devra
  *       être définie dans toutes les classes dérivées par héritage :
  * 
- *           virtual void debounce(const uint8_t input) = 0;
+ *           virtual void _debounce(const uint8_t input) = 0;
  * 
- *       Le mot clef "virtual" précise que la méthode debounce() pourra
+ *       Le mot clef "virtual" précise que la méthode _debounce() pourra
  *       être redéfinie dans les classes dérivées.
  * 
- *       L'affectation "= 0" précise que la méthode debounce() ne sera
+ *       L'affectation "= 0" précise que la méthode _debounce() ne sera
  *       pas définie (implémentée) par la classe Button elle-même mais
  *       DEVRA l'être par ses classes dérivées. C'est ce qui confère
  *       à la classe Button son caractère abstrait.
@@ -50,6 +50,11 @@
 class Button {
 
     private:
+
+        /**
+         * @brief Broche de lecture du signal d'entrée provenant du bouton.
+         */
+        uint8_t _pin;
 
         /**
          * @brief Définition d'un ensemble de valeurs pour caractériser l'état du bouton.
@@ -63,15 +68,15 @@ class Button {
          *       held     = 2
          *       released = 3
          */
-        enum State : uint8_t { free, pressed, held, released };
+        enum _State : uint8_t { free, pressed, held, released };
 
         /**
          * @brief État du bouton.
          * 
          * @note Cet attribut ne pourra donc prendre que les valeurs définies
-         *       par l'énumération `State` ci-dessus.
+         *       par l'énumération `_State` ci-dessus.
          */
-        State _state;
+        _State _state;
 
         /**
          * @brief Origine temporelle de l'état "held" (exprimée en millisecondes)
@@ -87,26 +92,21 @@ class Button {
          * @brief Mise à jour de l'état du bouton.
          * 
          * @note Dès lors que les signaux électroniques provenant du bouton auront
-         *       été lus et nettoyés par la méthode debounce(), il sera possible
+         *       été lus et nettoyés par la méthode _debounce(), il sera possible
          *       d'interpréter ces signaux pour déterminer dans quel état se trouve
          *       le bouton (free, pressed, held, released).
          * 
          *       Cette méthode est précisément chargée de cette interprétation.
          */
-        void update();
+        void _update();
 
     protected:
-
-        /**
-         * @brief Broche de lecture du signal d'entrée provenant du bouton.
-         */
-        uint8_t _pin;
 
         /**
          * @brief Niveau logique du signal de sortie provenant du bouton.
          * 
          * @note Il correspond à la valeur déparasitée du signal d'entrée
-         *       déterminée par la méthode debounce().
+         *       déterminée par la méthode _debounce().
          */
         uint8_t _output;
 
@@ -117,12 +117,12 @@ class Button {
          * 
          * @note Le signal d'entrée parasité par des effets rebonds potentiels
          *       sera directement lu par la fonction digitalRead() sur la broche
-         *       de lecture du bouton. La méthode debounce() se chargera donc
+         *       de lecture du bouton. La méthode _debounce() se chargera donc
          *       d'éliminer ces parasites à l'aide de différents algorithmes
          *       spécifiques de debouncing qui seront précisés dans les
          *       classes dérivées de ce modèle générique.
          */
-        virtual void debounce(const uint8_t input) = 0;
+        virtual void _debounce(const uint8_t input) = 0;
     
     public:
 
@@ -141,7 +141,7 @@ class Button {
          * 
          * @note Le signal électronique brut provenant du bouton et lu directement
          *       par la fonction digitalRead() sur la broche de lecture du bouton
-         *       est déparasité par la méthode debounce() pour fournir un signal
+         *       est déparasité par la méthode _debounce() pour fournir un signal
          *       logique propre de "sortie". Le niveau logique de sortie permet à
          *       son tour de déterminer dans quel état se trouve le bouton :
          * 
